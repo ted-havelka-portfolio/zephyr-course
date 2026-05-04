@@ -50,6 +50,10 @@ function use()
     echo "-f, --flash . . . . . to flash image to hardware"
     echo "-h, --help  . . . . . to show this help message"
     echo
+    echo "Example:"
+    echo
+    echo "   $ ./flash-manually.sh -p ../../scripts -c oocd-wl55jc.cfg -f"
+    echo
 }
 
 #-----------------------------------------------------------------------
