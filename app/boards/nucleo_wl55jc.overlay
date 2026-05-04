@@ -1,0 +1,9 @@
+/*
+ * blinky app overlay file - lecture 4 task 1
+ */
+
+/ {
+	aliases {
+		app-led = &blue_led_1;
+	};
+};
