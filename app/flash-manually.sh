@@ -52,7 +52,7 @@ function use()
     echo
     echo "Example:"
     echo
-    echo "   $ ./flash-manually.sh -p ../../scripts -c oocd-wl55jc.cfg -f"
+    echo "   $ ./flash-manually.sh -p ../scripts -c oocd-wl55jc.cfg -f"
     echo
 }
 
