@@ -3,89 +3,15 @@ menuconfig LED_SUBSYSTEM
 	default y
 	depends on GPIO
 	help
-	  Enable options at build time for adjusting LED behavior in the given
+	  Enable variable period for the Iomico blinky app exercise
 	  application.
 
 if LED_SUBSYSTEM
 
-config LED_BLINK_SLEEP_TIME_MS
-	int
-	default 250 if LED_BLINK_SLEEP_FAST_0P25_SEC
-	default 500 if LED_BLINK_SLEEP_FAST_0P5_SEC
-	default 1000 if LED_BLINK_SLEEP_MEDIUM_1_SEC
-	default 2000 if LED_BLINK_SLEEP_SLOW_2_SEC
-	default 0
-
-choice
-	prompt "LED blink sleep time"
-	default LED_BLINK_SLEEP_MEDIUM_1_SEC
-	help
-	  Specify the period of LED on and LED off in blinky demonstration.
-
-config LED_BLINK_SLEEP_FAST_0P25_SEC
-	bool "0.25s (extra fast)"
-
-config LED_BLINK_SLEEP_FAST_0P5_SEC
-	bool "0.5s (fast)"
-
-config LED_BLINK_SLEEP_MEDIUM_1_SEC
-	bool "1s (medium)"
-
-config LED_BLINK_SLEEP_SLOW_2_SEC
-	bool "2s (slow)"
-
-endchoice
-
-menuconfig LED_SUBSYSTEM_ADVANCED_SETTINGS
-	bool "Advanced LED settings"
-	default n
-	help
-	  Enable and configure certain more advanced and detailed LED behavior
-	  options.
-
-if LED_SUBSYSTEM_ADVANCED_SETTINGS
-
-config LED_BRIGHTNESS
-	int "LED brightness (0-100)"
-	range 0 100
-	default 100
-	help
-	  Set LED brightness (Note symbol available but application code not
-	  complete.  Will require hardware PWM or a more CPU intensive
-	  software implemenation.)
-
-config LED_FADE_DURATION
-	int "LED fade duration (ms)"
-	range 0 65535
+config APP_HEARTBEAT_PERIOD_MS
+	int "LED on+off period in milliseconds"
+	range 100 2000
 	default 500
-	help
-	  Select a period in milliseconds during which LED will fade from its
-	  set brightness to full off.  (Note this option does not say whether
-	  LED fades once and stays off, or fades and then turns on again to
-	  repeat this display pattern.)
-
-menuconfig LED_SUBSYSTEM_EXPERT_SETTINGS
-	bool "Expert settings"
-	default n
-	help
-	  Enable LED expert settings
-
-if LED_SUBSYSTEM_EXPERT_SETTINGS
-
-config LED_DEBUGGING
-	bool "Enable LED debugging"
-	help
-	  Enable more detailed MCU debug messages to indicate LED states and
-          settings over serial debug port.
-
-config LED_CUSTOM_BLINK_PATTERN
-	bool "Custom blink pattern"
-	help
-	  Enable pattern beyond stadard fifty percent duty cycle on/off.
-
-endif # LED_SUBSYSTEM_EXPERT_SETTINGS
-
-endif # LED_SUBSYSTEM_ADVANCED_SETTINGS
 
 endif # LED_SUBSYSTEM
 
