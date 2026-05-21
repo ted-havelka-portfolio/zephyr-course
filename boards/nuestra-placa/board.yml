@@ -1,0 +1,6 @@
+board:
+  name: nuestra-placa
+  full_name: Nuestra placa basado en Nucleo WL55JC
+  vendor: iomico_course_2026
+  socs:
+    - name: stm32wl55xx
