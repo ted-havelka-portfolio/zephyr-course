@@ -1,0 +1,4 @@
+description: |
+  Basic driver example for Iomico 2026 Zephyr course, lecture 6
+compatible: "nn,driver"
+include: base.yaml
