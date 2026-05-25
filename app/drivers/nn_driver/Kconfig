@@ -10,3 +10,6 @@ menuconfig NN_DRIVER
       show that the driver is correctly written in all its languages and
       file-wise elements:  driver bindings file, Kconfig, device tree overlay
       and C sources.
+
+source Kconfig.zephyr
+rsource "drivers/nn_driver/Kconfig"
