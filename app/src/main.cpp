@@ -29,12 +29,34 @@ namespace {
 		rc = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
 		LOG_INF("back from call to nn_driver API, status = %d", rc);
 	};
+
+	void test_channel_get(void) {
+		int32_t rc = 0;
+		struct sensor_value val;
+		rc = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
+	};
+
+	void test_sample_fetch(void) {
+		int32_t rc = 0;
+		// TODO [ ] Determine why the build process says
+		// sensor_sample_fetch() takes only one argument while its
+		// prototype in sensors.h and our nn-driver.c file has two
+		// parameters.  Never seen this before, but one parameter here
+		// in application somehow works!
+		//
+		// rc = sensor_sample_fetch(driver, SENSOR_CHAN_AMBIENT_TEMP);
+		rc = sensor_sample_fetch(driver);
+	};
 };
 
 int main(void)
 {
     bool led_state = true;
+    static uint32_t call_count = 0;
 
+    // Note Zephyr 3.7.0 (possibly a few earlier versions) require application
+    // main() to return zero.  We do so here even on a device input/output
+    // error:
     if (!gpio_is_ready_dt(&led)) return 0;
 
     if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) return 0;
@@ -42,10 +64,18 @@ int main(void)
     test();
 
     while (1) {
+	call_count++;
         if (gpio_pin_toggle_dt(&led) < 0) return 0;
 
         led_state = !led_state;
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
+
+	if ((call_count % 3) == 0) {
+		test_channel_get();
+	} else {
+		test_sample_fetch();
+	}
+
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
     }
     return 0;
