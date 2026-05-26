@@ -2,6 +2,9 @@
 
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/kernel.h>
+#include <zephyr/device.h>
+#include <zephyr/devicetree.h>
+#include <zephyr/drivers/sensor.h>
 #include <zephyr/logging/log.h>
 
 #define NN_DRIVER_NODE DT_NODELABEL(nn_driver0)
@@ -22,6 +25,16 @@ static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
+
+namespace {
+	void test(void) {
+		int32_t rc = 0;
+		struct sensor_value val;
+		rc = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
+		LOG_INF("back from call to nn_driver API, status = %d", rc);
+	};
+};
+
 int main(void)
 {
     bool led_state = true;
@@ -29,6 +42,8 @@ int main(void)
     if (!gpio_is_ready_dt(&led)) return 0;
 
     if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) return 0;
+
+    test();
 
     while (1) {
         if (gpio_pin_toggle_dt(&led) < 0) return 0;
