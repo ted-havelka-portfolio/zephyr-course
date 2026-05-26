@@ -1,8 +1,0 @@
-/* Iomico Zephyr Course 2026 lecture 6 */
-
-/ {
-	nn_driver0: nn_driver {
-		compatible = "nn,driver";
-		status = "okay";
-	};
-};

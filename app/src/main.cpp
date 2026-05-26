@@ -1,6 +1,19 @@
+// #include <nn-driver.h>
+
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+
+#define NN_DRIVER_NODE DT_NODELABEL(nn_driver0)
+
+#if DT_NODE_HAS_STATUS(NN_DRIVER_NODE, okay)
+const struct device *driver = DEVICE_DT_GET(NN_DRIVER_NODE);
+#warning "- DEV 0525 - nn_driver node found enabled, declaring a const struct device pointer variable . . ."
+#else
+#warning "- DEV 0525 - No enabled nn_driver node found!"
+#endif
+
+
 
 /* The devicetree node identifier for the "led0" alias. */
 #define LED_NODE DT_ALIAS(app_led)
