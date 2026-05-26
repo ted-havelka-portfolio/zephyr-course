@@ -28,4 +28,4 @@ static int init(const struct device *dev)
 	return 0;
 }
 
-DEVICE_DT_INST_DEFINE(0, init, NULL, NULL, NULL, POST_KERNEL,);
+DEVICE_DT_INST_DEFINE(0, init, NULL, NULL, NULL, POST_KERNEL, 80, &api_nn_driver);
