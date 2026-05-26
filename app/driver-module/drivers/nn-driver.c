@@ -4,7 +4,10 @@
 
 #define DT_DRV_COMPAT nn_driver
 
-#include <zephyr/driver/sensor.h>
+#include <zephyr/device.h>
+#include <zephyr/devicetree.h>
+#include <zephyr/pm/device.h>
+
 #include <zephyr/logging/log.h>
 
 LOG_MODULE_REGISTER(nn_driver, LOG_LEVEL_INF);
