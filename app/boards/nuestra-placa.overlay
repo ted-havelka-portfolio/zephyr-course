@@ -5,6 +5,7 @@
 / {
 	aliases {
 		app-led = &blue_led_1;
+		driver-led = &green_led_3;
 	};
 };
 
