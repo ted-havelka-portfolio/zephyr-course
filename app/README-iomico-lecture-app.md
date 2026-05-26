@@ -35,3 +35,22 @@ west build -b nuestra-placa -p always -- -DBOARD_ROOT=..
 ## Build invocation for l5-task2
 
 west build -b mi-placa -p always -- -DBOARD_ROOT=..
+
+## Expected Outputs
+
+Early commits up through tags l5-task2 are all the same or similar, and begin
+with Zephyr's kernel boot time banner message.  At the point of Zephyr driver
+creation exercises, there is an interesting pre-banner message.
+
+```
+[00:00:00.000,000] <inf> nn_driver: nn_driver init() function called
+*** Booting Zephyr OS build v4.2.0 ***
+[00:00:00.000,000] <inf> nn_driver: Hello from nn_driver_channel_get()
+[00:00:00.000,000] <inf> main: back from call to nn_driver API, status = 0
+[00:00:00.000,000] <inf> main: LED state: OFF
+[00:00:01.000,000] <inf> main: LED state: ON
+[00:00:02.000,000] <inf> main: LED state: OFF
+[00:00:03.000,000] <inf> main: LED state: ON
+[00:00:04.000,000] <inf> main: LED state: OFF
+[00:00:05.000,000] <inf> main: LED state: ON
+```
