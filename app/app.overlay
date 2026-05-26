@@ -2,7 +2,7 @@
 
 / {
 	nn_driver0: nn_driver {
-		compatible: "nn,driver";
+		compatible = "nn,driver";
 		status = "okay";
 	};
 };
