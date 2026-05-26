@@ -1,3 +1,4 @@
+name: driver-module
 build:
   cmake: .
   kconfig: Kconfig
