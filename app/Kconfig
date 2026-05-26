@@ -17,3 +17,7 @@ endif # LED_SUBSYSTEM
 
 # Following Kconfig inclusion needed to support Zephyr logging template macros
 source "Kconfig.zephyr"
+
+# menu "Kionix and other sensor drivers V2"
+rsource "driver-module/Kconfig"
+# endmenu
