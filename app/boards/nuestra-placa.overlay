@@ -7,3 +7,15 @@
 		app-led = &blue_led_1;
 	};
 };
+
+// For lecture 6 task 1:
+// TODO [ ] Determine how to properly factor this into an app.overlay file,
+//          or a best practices factoring and location if it should be
+//          elsewhere.
+
+/ {
+	nn_driver0: nn_driver {
+		compatible = "nn,driver";
+		status = "okay";
+	};
+};
