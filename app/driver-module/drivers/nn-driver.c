@@ -7,6 +7,7 @@
 #include <zephyr/device.h>
 #include <zephyr/devicetree.h>
 #include <zephyr/pm/device.h>
+#include <zephyr/drivers/sensor.h>
 
 #include <zephyr/logging/log.h>
 

@@ -10,13 +10,10 @@
 #define NN_DRIVER_NODE DT_NODELABEL(nn_driver0)
 
 #if DT_NODE_HAS_STATUS(NN_DRIVER_NODE, okay)
-const struct device *driver = DEVICE_DT_GET(NN_DRIVER_NODE);
-#warning "- DEV 0525 - nn_driver node found enabled, declaring a const struct device pointer variable . . ."
+static const struct device *driver = DEVICE_DT_GET(DT_NODELABEL(nn_driver0));
 #else
-#warning "- DEV 0525 - No enabled nn_driver node found!"
+#warning "- DEV 0525 - No enabled nn_driver node found"
 #endif
-
-
 
 /* The devicetree node identifier for the "led0" alias. */
 #define LED_NODE DT_ALIAS(app_led)
@@ -24,7 +21,6 @@ const struct device *driver = DEVICE_DT_GET(NN_DRIVER_NODE);
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
-
 
 namespace {
 	void test(void) {
