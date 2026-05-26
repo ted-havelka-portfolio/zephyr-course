@@ -18,8 +18,8 @@ static int nn_driver_channel_get(const struct device *dev,
 }
 
 static DEVICE_API(sensor, api_nn_driver) = {
-	.channel_get = nn_driver_channel_get;
-	.sample_fetch = NULL;
+	.channel_get = nn_driver_channel_get,
+	.sample_fetch = NULL,
 };
 
 static int init(const struct device *dev)
