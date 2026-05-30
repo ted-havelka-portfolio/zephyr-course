@@ -12,3 +12,7 @@ manifest:
           - hal_stm32
           - hal_nordic
         path-prefix: deps
+    - name: nn-driver-custom
+      path: deps/modules/lib/nn-driver-custom
+      revision: main
+      url: https://github.com/ted-havelka-portfolio/nn-custom-driver
