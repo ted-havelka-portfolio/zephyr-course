@@ -1,3 +1,0 @@
-menu "Iomico Zephyr Course driver module drivers"
-rsource "drivers/Kconfig"
-endmenu
