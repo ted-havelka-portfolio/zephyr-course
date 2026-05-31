@@ -132,10 +132,46 @@ here the ``id`` field.  In the app it is changed from a starting value of 0 to
 the value 555.  A small integer value to change was chosen because it does not
 depend on any special hardware, not even an LED or GPIO.
 
+- Zephyr Shell Output l7-task1
+
+```
+[00:00:00.000,000] <inf> nn_driver: nn_driver init() function called
+*** Booting Zephyr OS build v4.2.0 ***
+[00:00:00.001,000] <inf> nn_driver: nn_driver extended API settings
+[00:00:00.001,000] <inf> nn_driver: active_led: 0
+[00:00:00.001,000] <inf> nn_driver: id: . . . . 0
+[00:00:00.001,000] <inf> main: - DEV 0530 - setting driver id to non-zero value . . .
+[00:00:00.001,000] <inf> main: - DEV 0530 - showing settings again:
+[00:00:00.001,000] <inf> nn_driver: nn_driver extended API settings
+[00:00:00.001,000] <inf> nn_driver: active_led: 0
+[00:00:00.001,000] <inf> nn_driver: id: . . . . 555
+uart:~$ driver help
+driver - - driver - show and set commands
+Subcommands:
+  show_settings  : show nn custom driver run time data
+  set_id         : set custom driver numeric identifier with unsigned int
+uart:~$ driver show_settings 
+[00:00:12.467,000] <inf> nn_driver: nn_driver extended API settings
+[00:00:12.467,000] <inf> nn_driver: active_led: 0
+[00:00:12.467,000] <inf> nn_driver: id: . . . . 555
+uart:~$ driver set_id 66
+setting driver id to 66
+uart:~$ driver show_settings
+[00:00:25.060,000] <inf> nn_driver: nn_driver extended API settings
+[00:00:25.060,000] <inf> nn_driver: active_led: 0
+[00:00:25.060,000] <inf> nn_driver: id: . . . . 66
+uart:~$
+```
+
 ## TODO / Not Completed
 
 For lack of time the second task for lecture 7 on Zephyr shell, and the tasks
-for Zephyr ztest framework were not completed by day's end 2026 May 31.
+for Zephyr ztest framework were not completed by day's end 2026 May 31.  These
+are tasks:
+
+- l7-task2
+- l8-task1
+- l8-task2
 
 ## Reference
 
