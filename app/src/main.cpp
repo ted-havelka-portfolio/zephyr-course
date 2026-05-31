@@ -30,29 +30,26 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 #ifdef DEV_USE_NN_DRIVER
 namespace {
+	/*
 	void test(void) {
 		int32_t rc = 0;
 		struct sensor_value val;
 		rc = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
 		LOG_INF("back from call to nn_driver API, status = %d", rc);
 	};
+	*/
 
 	void test_channel_get(void) {
 		int32_t rc = 0;
 		struct sensor_value val;
-		rc = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
+		// Note following call is to custom driver, not DEVICE_API() based one:
+		rc = channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val, &led);
 	};
 
 	void test_sample_fetch(void) {
 		int32_t rc = 0;
-		// TODO [ ] Determine why the build process says
-		// sensor_sample_fetch() takes only one argument while its
-		// prototype in sensors.h and our nn-driver.c file has two
-		// parameters.  Never seen this before, but one parameter here
-		// in application somehow works!
-		//
-		// rc = sensor_sample_fetch(driver, SENSOR_CHAN_AMBIENT_TEMP);
-		rc = sensor_sample_fetch(driver);
+		// Note following call is to custom driver, not DEVICE_API() based one:
+		rc = sample_fetch(driver, SENSOR_CHAN_AMBIENT_TEMP, &led);
 	};
 };
 #endif // DEV_USE_NN_DRIVER
@@ -70,31 +67,13 @@ int main(void)
 
     if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) goto end;
 
-#ifdef DEV_USE_NN_DRIVER
     if (!device_is_ready(driver)) {
         LOG_ERR("LED device not ready!  Exiting early . . .");
         goto end;
     }
 
-    test();
-
-    // nn_driver_show_settings(driver);
-
-    // - DEV 0527 - debugging error when trying to reference driver struct:
-    // 1.
-    // const struct nn_device_data *data = (struct nn_device_data)driver->data;
-    // 2.
-    // #define DT_DRV_COMPAT nn_driver
-    // const struct nn_device_config *config = driver->config;
-    // 3.
-    // const struct nn_device_config *config = (struct nn_device_config)driver->config;
-    // if (config != NULL) {
-    //     config->show_settings(driver);
-    // }
-
     rc = (uint32_t)show_settings(driver);
     LOG_INF("- DEV 0528 - nn driver setting for active_led = %d", rc);
-#endif // DEV_USE_NN_DRIVER
 
     while (1) {
 	call_count++;
@@ -103,13 +82,11 @@ int main(void)
         led_state = !led_state;
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
 
-#ifdef DEV_USE_NN_DRIVER
 	if ((call_count % 3) == 0) {
 		test_channel_get();
 	} else {
 		test_sample_fetch();
 	}
-#endif // DEV_USE_NN_DRIVER
 
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
     }
