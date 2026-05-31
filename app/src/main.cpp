@@ -73,7 +73,13 @@ int main(void)
     }
 
     rc = (uint32_t)show_settings(driver);
-    LOG_INF("- DEV 0528 - nn driver setting for active_led = %d", rc);
+    // LOG_INF("- DEV 0528 - nn driver setting for active_led = %d", rc);
+
+    LOG_INF("- DEV 0530 - setting driver id to non-zero value . . .");
+    rc = (uint32_t)set_id(driver, 555);
+
+    LOG_INF("- DEV 0530 - showing settings again:");
+    rc = (uint32_t)show_settings(driver);
 
     while (1) {
 	call_count++;
