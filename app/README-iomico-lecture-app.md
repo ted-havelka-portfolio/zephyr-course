@@ -38,6 +38,8 @@ west build -b mi-placa -p always -- -DBOARD_ROOT=..
 
 ## Expected Outputs
 
+Start up messages from app tagged 'l6-task1'.
+
 Early commits up through tags l5-task2 are all the same or similar, and begin
 with Zephyr's kernel boot time banner message.  At the point of Zephyr driver
 creation exercises, there is an interesting pre-banner message.
