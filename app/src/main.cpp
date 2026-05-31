@@ -1,5 +1,7 @@
 /*
  * SPDX-License-Identifier: MIT
+ *
+ * file main.cpp for course work of 2026 Iomico Zephyr Course
  */
 
 #include <../../../deps/modules/lib/nn-custom-driver/include/nn-custom-driver.h>
@@ -28,7 +30,6 @@ static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
-#ifdef DEV_USE_NN_DRIVER
 namespace {
 	/*
 	void test(void) {
@@ -52,7 +53,16 @@ namespace {
 		rc = sample_fetch(driver, SENSOR_CHAN_AMBIENT_TEMP, &led);
 	};
 };
-#endif // DEV_USE_NN_DRIVER
+
+int32_t wrapper_show_settings(void)
+{
+    return (int32_t)show_settings(driver);
+}
+
+int32_t wrapper_set_id(const uint32_t id)
+{
+    return (uint32_t)set_id(driver, id);
+}
 
 int main(void)
 {
