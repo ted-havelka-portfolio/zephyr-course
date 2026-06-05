@@ -17,8 +17,3 @@ manifest:
       path: deps/modules/lib/nn-custom-driver
       revision: main
       url: https://github.com/ted-havelka-portfolio/nn-custom-driver
-
-    - name: libostentus
-      path: deps/modules/lib/libostentus
-      revision: v1.0.0
-      url: https://github.com/golioth/libostentus
