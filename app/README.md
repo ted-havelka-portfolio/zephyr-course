@@ -169,12 +169,18 @@ For lack of time the second task for lecture 7 on Zephyr shell, and the tasks
 for Zephyr ztest framework were not completed by day's end 2026 May 31.  These
 are tasks:
 
-- l7-task2
+- l7-task1
 - l8-task1
 - l8-task2
 
+Out of the two lecture 7 Zephy shell tasks author Ted chose to complete the
+second.  This prerequisite work for l7-task2, a custom driver, required much
+more work than the first shell homework.  This challenge also provided the
+greatest learning opportunity.  Given limited time and not enough to complete
+all tasks, l7-task2 was chosen for this reason.
+
 ## Reference
 
-Class topics, resources and ssignments are outlined at:
+Class topics, resources and assignments are outlined at:
 
 - https://iomico.atlassian.net/wiki/external/OTFlYTBiYmVjYjU5NGY2M2IyOWJhNGY4ZTQxZWM5ODg
